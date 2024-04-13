@@ -61,6 +61,13 @@ public class AccountRepository : IAccountRepository
         return accountDto;
     }
 
+    public async Task<User> GetUserByEmailAsync(string email)
+    {
+        User? user = await _dataContext.Users.Where(student => student.Email == email).FirstOrDefaultAsync();
+
+        return user;
+    }
+
     public async Task<bool> SaveChangesAsync()
     {
         return 0 < await _dataContext.SaveChangesAsync();
